@@ -3,6 +3,7 @@ import axios from 'axios';
 import Weather from './Weather'; // Import the Weather component
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './CityExplorer.css'; // Assuming this is your CSS file
+import Movies from './Movies';
 
 const CityExplorer = () => {
   const [cityName, setCityName] = useState('');
@@ -10,7 +11,7 @@ const CityExplorer = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [mapImage, setMapImage] = useState('');
   const [error, setError] = useState(null);
-
+  const [moviesData, setMoviesData] = useState(null);
   const handleInputChange = (e) => {
     setCityName(e.target.value);
   };
@@ -30,7 +31,9 @@ const CityExplorer = () => {
           },
         }
       );
-
+      const moviesResponse = await axios.get(`[Your Server URL]/movies`, {
+        params: { city: cityName },
+      });
       const firstLocation = locationResponse.data[0];
       setLocationData({
         displayName: firstLocation.display_name,
@@ -72,6 +75,8 @@ console.log(weatherResponse);
     }
   };
 
+  
+
   return (
     <div className="city-explorer-container">
       <form>
@@ -107,7 +112,9 @@ console.log(weatherResponse);
       )}
 
       {weatherData && <Weather forecasts={weatherData} />} {/* Render Weather component */}
+      {moviesData && <Movies movies={moviesData} />} 
     </div>
+    
   );
 };
 
