@@ -31,7 +31,7 @@ const CityExplorer = () => {
           },
         }
       );
-      const moviesResponse = await axios.get(`[Your Server URL]/movies`, {
+      const moviesResponse = await axios.get(`https://three01lab8.onrender.com/movies`, {
         params: { city: cityName },
       });
       const firstLocation = locationResponse.data[0];
