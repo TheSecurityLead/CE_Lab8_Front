@@ -44,7 +44,7 @@ const CityExplorer = () => {
 
       // Fetch weather data from your Express server
       const weatherResponse = await axios.get(
-        `https://lab-07.onrender.com/weather`
+        `https://three01lab8.onrender.com/weather`
         
          , {
         params: {
